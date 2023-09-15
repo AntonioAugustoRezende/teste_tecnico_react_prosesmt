@@ -6,6 +6,7 @@ import { CaseHook } from "../hooks/cases";
 import InputCountry from "../components/InputCountry";
 import InputState from "../components/InputState";
 import { Loading } from "../components/Loading";
+import { Modal } from "../components/Modal";
 
 export interface Response {
   data: Cases[];
@@ -42,6 +43,10 @@ export const Home = () => {
     setCountry,
     state,
     setState,
+    date,
+    setDate,
+    isOpen,
+    setIsOpen,
   } = CaseHook();
   useEffect(() => {
     getAllCases();
@@ -50,15 +55,22 @@ export const Home = () => {
 
   return (
     <>
+      {isOpen && (
+        <Modal
+          title="Cadastre novos casos"
+          toggleModal={() => setIsOpen((prevState) => !prevState)}
+        />
+      )}
+
       {globalLoading && <Loading />}
       <div className="font-bold flex flex-1 p-6 gap-3 bg-black text-zinc-50">
         <aside className="w-96 mt-6 h-fit pt-6 flex flex-col gap-4 bg-zinc-900 p-5 rounded">
           <h2 className="font-semibold text-2xl mb-6">Filtros</h2>
 
-          {state || country ? (
+          {state || country || date.length > 0 ? (
             <button
               onClick={() => {
-                setCountry(null), setState(null);
+                setCountry(null), setState(null), setDate([]);
               }}
               className="mt-5 w-fit bg-blue-950 hover:bg-blue-700 p-3 rounded cursor-pointer text-white-900 font-bold text-base"
             >
@@ -84,23 +96,36 @@ export const Home = () => {
           <div
             className="cursor-pointer"
             onClick={() => {
-              setCountry(null), setState(null);
+              setCountry(null), setState(null), setDate([]);
             }}
           >
             <Title />
           </div>
+          <button onClick={() => setIsOpen((prevState) => !prevState)}>
+            Cadastrar dados
+          </button>
 
           {!state && !country ? (
             <ul className="grid grid-cols-4 gap-4 p-6 mt-6">
-              {cases.map((data: Cases) => (
-                <Card
-                  cases={data.cases}
-                  deaths={data.deaths}
-                  state={data.state}
-                  suspects={data.suspects}
-                  key={data.uid}
-                />
-              ))}
+              {date.length > 0
+                ? date.map((data: Cases) => (
+                    <Card
+                      cases={data.cases}
+                      deaths={data.deaths}
+                      state={data.state}
+                      suspects={data.suspects}
+                      key={data.uid}
+                    />
+                  ))
+                : cases.map((data: Cases) => (
+                    <Card
+                      cases={data.cases}
+                      deaths={data.deaths}
+                      state={data.state}
+                      suspects={data.suspects}
+                      key={data.uid}
+                    />
+                  ))}
             </ul>
           ) : (
             <ul className="grid grid-cols-4 gap-4 p-6 mt-6">

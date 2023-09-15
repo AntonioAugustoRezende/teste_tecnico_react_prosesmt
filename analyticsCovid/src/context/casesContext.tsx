@@ -29,7 +29,18 @@ export interface Countries {
   deaths: number;
   recovered: number;
   updated_at: string;
-  id: number;
+  id?: number;
+}
+
+export interface NewCase {
+  country: string;
+  cases: string;
+  confirmed: string;
+  deaths: string;
+  recovered: string;
+  day: string;
+  month: string;
+  year: string;
 }
 export interface iError {
   message: string;
@@ -37,7 +48,7 @@ export interface iError {
 
 interface CasesProviderValues {
   handleSubmitDate(data: DataDate): void;
-  date: string | null;
+  date: [] | Cases[];
   getAllCases: () => Promise<void>;
   cases: [] | Cases[];
   getAllCountries: () => Promise<void>;
@@ -49,6 +60,11 @@ interface CasesProviderValues {
   getOneState: (data: FormStateData) => Promise<void>;
   state: Countries | null;
   setState: React.Dispatch<React.SetStateAction<Countries | null>>;
+  setDate: React.Dispatch<React.SetStateAction<[] | Cases[]>>;
+  handleSubmitModal: (data: NewCase) => void;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpen: boolean;
+  newCase: NewCase | null;
 }
 
 interface CasesProviderProps {
@@ -60,14 +76,16 @@ export const CasesContext = createContext<CasesProviderValues>(
 );
 
 export const CasesProvider = ({ children }: CasesProviderProps) => {
-  const [date, setDate] = useState<null | string>(null);
+  const [date, setDate] = useState<Cases[] | []>([] as Cases[]);
   const [cases, setCases] = useState<Cases[] | []>([] as Cases[]);
   const [countries, setCountries] = useState<Countries[] | []>(
     [] as Countries[]
   );
   const [country, setCountry] = useState<Cases | null>(null);
   const [state, setState] = useState<Countries | null>(null);
+  const [newCase, setNewCase] = useState<NewCase | null>(null);
   const [globalLoading, setGlobalLoading] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const getAllCases = async (): Promise<void> => {
     try {
@@ -100,7 +118,7 @@ export const CasesProvider = ({ children }: CasesProviderProps) => {
         `/brazil/uf/${searchCountry[0].uf.toLocaleLowerCase()}`
       );
       setState(null);
-      setDate(null);
+      setDate([]);
 
       setCountry(data);
     } catch (error) {
@@ -121,7 +139,7 @@ export const CasesProvider = ({ children }: CasesProviderProps) => {
 
       setState(data.data);
       setCountry(null);
-      setDate(null);
+      setDate([]);
     } catch (error) {
       const currentError = error as AxiosError<iError>;
       console.error(currentError.message);
@@ -132,9 +150,8 @@ export const CasesProvider = ({ children }: CasesProviderProps) => {
     setGlobalLoading(false);
   };
 
-  const handleSubmitDate = async (data: DataDate) => {
+  const handleSubmitDate = async (data: DataDate): Promise<void> => {
     const newDate = data.year + data.month + data.day;
-    console.log(newDate);
 
     try {
       setGlobalLoading(true);
@@ -153,8 +170,10 @@ export const CasesProvider = ({ children }: CasesProviderProps) => {
       setGlobalLoading(false);
     }
     setGlobalLoading(false);
-
-    setDate(newDate);
+  };
+  const handleSubmitModal = (data: NewCase): void => {
+    setIsOpen((prevState) => !prevState);
+    setNewCase(data);
   };
   return (
     <CasesContext.Provider
@@ -172,6 +191,11 @@ export const CasesProvider = ({ children }: CasesProviderProps) => {
         getOneState,
         state,
         setState,
+        setDate,
+        handleSubmitModal,
+        setIsOpen,
+        isOpen,
+        newCase,
       }}
     >
       {children}

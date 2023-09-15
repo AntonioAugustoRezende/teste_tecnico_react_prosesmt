@@ -24,10 +24,7 @@ export default function InputDate({
 }: InputDateProps) {
   return (
     <div className="flex flex-col gap-3 w-20 ">
-      <label
-        className="font-inter font-medium text-sm text-grey-1"
-        htmlFor={label}
-      >
+      <label className="text-base font-bold text-grey-200 mb-2" htmlFor={label}>
         {label}
       </label>
       <input
