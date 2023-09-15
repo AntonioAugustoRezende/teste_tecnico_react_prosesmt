@@ -64,11 +64,11 @@ export const Modal = ({
         ref={blockClosing ? null : ref}
         className={`${attributes} ${
           !widthFull && "width-modal"
-        } bg-gray-200 px-6 py-5 shadow-lg rounded-lg h-screen animate-modal duration-300`}
+        } px-6 py-5 shadow-lg rounded-lg h-screen animate-modal duration-300`}
       >
-        <div className="flex-col flex ">
+        <div className="bg-gray-100/80 flex-col flex w-[430px] h-fit sm:py-11 py-7 px-7 rounded">
           <div className="flex justify-between items-center">
-            <h2 className="text-lg text-black">{title}</h2>
+            <h2 className="text-lg font-bold text-black">{title}</h2>
             <button onClick={toggleModal} className="btn-close-modal">
               X
             </button>
@@ -76,7 +76,7 @@ export const Modal = ({
 
           <form
             onSubmit={handleSubmit(handleSubmitModal)}
-            className="bg-gray-200/80 sm:w-[412px] w-[93%] sm:py-11 py-7 px-7 rounded"
+            className=" w-full sm:py-11 py-7 px-7"
           >
             <div>
               <Select

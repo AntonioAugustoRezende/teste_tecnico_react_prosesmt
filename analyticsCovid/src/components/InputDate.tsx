@@ -35,10 +35,10 @@ export default function InputDate({
         value={value}
         onBlur={onBlur}
         defaultValue={defaultValue}
-        className="h-12 sm:h-10   px-4 text-zinc-800 border-1.5 rounded mb-6 placeholder:text-gray-600 hover:bg-grey-100 focus:outline-none"
+        className="h-12 sm:h-10 px-4 text-zinc-800 border-1.5 rounded mb-6 placeholder:text-gray-600 hover:bg-grey-100 focus:outline-none"
       />
       {error && (
-        <p className="flex  text-red-500 relative bottom-[20px] font-extralight text-sm">
+        <p className="flex  text-red-500 font-bold relative bottom-[20px] text-sm">
           {error}
         </p>
       )}
