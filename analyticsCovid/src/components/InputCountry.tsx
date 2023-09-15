@@ -51,7 +51,7 @@ export default function InputCountry({
             })}
       </Select>
       <button
-        className="mt-5 w-fit bg-blue-950 hover:bg-blue-700 p-5 rounded cursor-pointer text-white-900 font-bold text-base"
+        className="mt-5 w-fit bg-blue-950 hover:bg-blue-700 p-3 rounded cursor-pointer text-white-900 font-bold text-base sm:text-sm"
         type="submit"
       >
         {titleButton}

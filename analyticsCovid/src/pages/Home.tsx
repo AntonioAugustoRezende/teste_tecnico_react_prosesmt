@@ -73,7 +73,7 @@ export const Home = () => {
 
       {globalLoading && <Loading />}
       <div className="font-bold flex flex-1 p-6 gap-3 bg-black text-zinc-50">
-        <aside className="w-96 mt-6 h-fit pt-6 flex flex-col gap-4 bg-zinc-900 p-5 rounded">
+        <aside className="md:w-64 lg:w-64 xl:w-[17rem] 2xl:w-[17rem] w-[17rem] sm:hidden w-34 mt-6 h-fit pt-6 flex flex-col gap-4 bg-zinc-900 p-5 rounded">
           <h2 className="font-semibold text-2xl mb-6">Filtros</h2>
 
           {state || country || date.length > 0 ? (
@@ -118,7 +118,7 @@ export const Home = () => {
           </button>
 
           {!state && !country ? (
-            <ul className="grid grid-cols-4 gap-4 p-6 mt-6">
+            <ul className="grid sm:grid-cols-2 overflow-auto gap-4 p-6 mt-6  md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 grid-cols-5">
               {date.length > 0
                 ? date.map((data: Cases) => (
                     <Card

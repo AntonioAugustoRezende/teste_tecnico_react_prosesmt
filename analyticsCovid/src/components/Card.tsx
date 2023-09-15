@@ -14,7 +14,7 @@ interface CardProps {
 }
 export default function Card({ state, suspects, deaths, cases }: CardProps) {
   return (
-    <li className="bg-gray-200/90 p-3 flex flex-col gap-3 rounded-md hover:bg-white/40">
+    <li className="bg-gray-200/90 p-3 flex flex-col  gap-3 rounded-md hover:bg-white/40">
       <h2 className="text-xl text-center font-extrabold text-blue-900">
         {state}
       </h2>
