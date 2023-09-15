@@ -7,6 +7,7 @@ import InputCountry from "../components/InputCountry";
 import InputState from "../components/InputState";
 import { Loading } from "../components/Loading";
 import { Modal } from "../components/Modal";
+import { ResultCase } from "../components/ResultNewCase";
 
 export interface Response {
   data: Cases[];
@@ -47,6 +48,8 @@ export const Home = () => {
     setDate,
     isOpen,
     setIsOpen,
+    isOpenResult,
+    setIsOpenResult,
   } = CaseHook();
   useEffect(() => {
     getAllCases();
@@ -59,6 +62,12 @@ export const Home = () => {
         <Modal
           title="Cadastre novos casos"
           toggleModal={() => setIsOpen((prevState) => !prevState)}
+        />
+      )}
+      {isOpenResult && (
+        <ResultCase
+          title="Casos cadastrados"
+          toggleModal={() => setIsOpenResult((prevState) => !prevState)}
         />
       )}
 
@@ -101,7 +110,10 @@ export const Home = () => {
           >
             <Title />
           </div>
-          <button onClick={() => setIsOpen((prevState) => !prevState)}>
+          <button
+            onClick={() => setIsOpen((prevState) => !prevState)}
+            className=" ml-5 mt-5 w-fit bg-blue-950 hover:bg-blue-700 p-3 rounded cursor-pointer text-white-900 font-bold text-base"
+          >
             Cadastrar dados
           </button>
 

@@ -65,6 +65,8 @@ interface CasesProviderValues {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isOpen: boolean;
   newCase: NewCase | null;
+  setIsOpenResult: React.Dispatch<React.SetStateAction<boolean>>;
+  isOpenResult: boolean;
 }
 
 interface CasesProviderProps {
@@ -86,6 +88,7 @@ export const CasesProvider = ({ children }: CasesProviderProps) => {
   const [newCase, setNewCase] = useState<NewCase | null>(null);
   const [globalLoading, setGlobalLoading] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isOpenResult, setIsOpenResult] = useState(false);
 
   const getAllCases = async (): Promise<void> => {
     try {
@@ -172,8 +175,9 @@ export const CasesProvider = ({ children }: CasesProviderProps) => {
     setGlobalLoading(false);
   };
   const handleSubmitModal = (data: NewCase): void => {
-    setIsOpen((prevState) => !prevState);
     setNewCase(data);
+    setIsOpenResult((prevState) => !prevState);
+    setIsOpen((prevState) => !prevState);
   };
   return (
     <CasesContext.Provider
@@ -196,6 +200,8 @@ export const CasesProvider = ({ children }: CasesProviderProps) => {
         setIsOpen,
         isOpen,
         newCase,
+        setIsOpenResult,
+        isOpenResult,
       }}
     >
       {children}
