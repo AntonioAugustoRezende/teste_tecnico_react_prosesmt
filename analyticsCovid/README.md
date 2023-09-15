@@ -1,27 +1,66 @@
-# React + TypeScript + Vite
+# Projeto Front End Covid Analytics
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Covid Analytics](./src/assets/images/logo.svg)
 
-Currently, two official plugins are available:
+Projeto solicitado como teste tecnico da empresa Prosesmt.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Uma aplicação de consulta dos dados do Covid 19.
 
-## Expanding the ESLint configuration
+## Índice
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- <a href="#-instalar">Instalando e rodando o projeto</a>
+- <a href="#-funcionalidades">Funcionalidades</a>
+- <a href="#-bibliotecas">Bibliotecas utilizadas</a>
+- <a href="#-ferramentas">Ferramentas</a>
+- <a href="#-interagir">Como interagir com o projeto</a>
+- <a href="#-contribuidoras">Pessoas contribuidoras</a>
 
-- Configure the top-level `parserOptions` property like this:
+## Instalando e rodando o projeto
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+```bash
+# Instale as dependências:
+$ npm install
+
+# Execute a aplicação:
+$ npm run dev
+
+# Acesse pelo seu navegador:
+$ http://localhost:5173/
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Funcionalidades
+
+### Gerais
+
+- Visualizar os dados de todos os estados do país
+- Filtrar por estado
+- Filtrar por país
+- Filtrar por data
+- Adicionar novos dados
+
+
+## Bibliotecas utilizadas
+
+- [x] React
+- [x] Tailwind
+- [x] React-hook-form
+- [x] Zod
+- [x] Axios
+- [x] React-router-dom
+
+## Ferramentas
+
+- [x] VS CODE
+- [x] GitHub
+- [x] GIT
+- [x] TypeScript
+- [x] Notion
+- [x] JIRA
+
+## Como interagir com o projeto
+
+[Clique aqui](https://github.com/AntonioAugustoRezende/teste_tecnico_react_prosesmt) para acessar o repositório da API relacionada a este projeto.
+
+## Pessoa contribuidora
+
+- [Antonio Augusto](https://github.com/AntonioAugustoRezende)
